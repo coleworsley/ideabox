@@ -1,7 +1,22 @@
 var allIdeas = []
 checkStorage()
 
-// Event
+
+// Event Listeners
+$('.title-input, .body-input').on('input', function() {
+  var titleText = $('.title-input').val();
+  var bodyText = $('.body-input').val();
+
+  if (titleText != "" && bodyText != "") {
+    $('.save-button').attr('disabled', false);
+  }
+
+  if (titleText == "" || bodyText == ""){
+    $('.save-button').attr('disabled', true);
+  }
+});
+
+
 $('.save-button').on('click', function() {
   console.log("it worked!")
   var titleInput = $('.title-input').val();
@@ -26,9 +41,9 @@ function checkStorage () {
 function addToStorage (idea) {
   checkStorage()
   allIdeas.unshift(idea)
-
   var stringifiedAllIdeas = JSON.stringify(allIdeas);
   localStorage.setItem('allIdeas', stringifiedAllIdeas);
+  checkStorage()
 }
 
 
