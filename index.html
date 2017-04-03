@@ -11,50 +11,43 @@
 
   <body>
     <header>
-      <h1>idea<span>box</span></h1>
-      <input type="text" name="title" placeholder="Title" class="title-input">
+      <div class="header-container">
+        <h1><span class="accent-color">idea</span>box</h1>
+        <input type="text" name="title" placeholder="Title" class="title-input">
 
-      <textarea name="body" placeholder="Body" class="body-input"></textarea>
+        <textarea name="body" placeholder="Body" class="body-input"></textarea>
 
-      <button class="save-button">Save</button>
+        <button class="save-button">Save</button>
+      </div>
     </header>
 
     <main>
-      <input type="search" name="seachbox" placeholder="Search" class="search-box">
+      <div class="main-container">
+        <input type="search" name="seachbox" placeholder="Search" class="search-box">
 
-      <article class="box">
-        <h3>Example Idea 1</h3>
-        <img src="assets/delete.svg" alt="exit button" class="delete icon">
-        <p class="idea-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-        <img src="assets/upvote.svg" alt="upvote" class="upvote icon">
-        <img src="assets/downvote.svg" alt="downvote" class="upvote icon">
-        <p class="idea-quality">Quality: swill</p>
-      </article>
+        <article class="box">
+          <div class="idea-header">
+            <h3>Example Idea 1</h3>
+            <img src="assets/delete.svg" alt="exit button" class="delete icon">
+          </div>
+          <p class="idea-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        <div class="idea-footer">
+          <div class="quality-icons">
+            <img src="assets/upvote.svg" alt="upvote" class="upvote icon">
+            <img src="assets/downvote.svg" alt="downvote" class="upvote icon">
+          </div>
+          <p class="idea-quality">Quality: <span class="quality-value">swill</span></p>
+        </div>
+        </article>
 
-      <article class="box">
-        <h3>Example Idea 1</h3>
-        <img src="assets/delete.svg" alt="exit button" class="delete icon">
-        <p class="idea-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-        <img src="assets/upvote.svg" alt="upvote" class="upvote icon">
-        <img src="assets/downvote.svg" alt="downvote" class="upvote icon">
-        <p class="idea-quality">Quality: swill</p>
-      </article>
-
-      <article class="box">
-        <h3>Example Idea 1</h3>
-        <img src="assets/delete.svg" alt="exit button" class="delete icon">
-        <p class="idea-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-        <img src="assets/upvote.svg" alt="upvote" class="upvote icon">
-        <img src="assets/downvote.svg" alt="downvote" class="upvote icon">
-        <p class="idea-quality">Quality: swill</p>
-      </article>
+      </div>
     </main>
+    <footer>
+      <p>Turing School of Software & Design</p>
+      <p>Built by <span class="accent-color"><a target="_blank" href="https://github.com/coleworsley">Cole</a></span> & <span class="accent-color"><a target="_blank" href="https://github.com/dstock48">Dave</a></span></p>
+    </footer>
   </body>
 
   <script
