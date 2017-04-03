@@ -24,6 +24,7 @@ $('.save-button').on('click', function() {
   var newIdea = new ConstructIdea(titleInput, bodyInput);
 
   addToStorage(newIdea);
+  buildBox(newIdea);
 })
 
 
@@ -36,20 +37,42 @@ function checkStorage () {
   allIdeas = JSON.parse(stringifiedArr) || [];
 }
 
-
 // Checks current storage then adds new idea to any existing ideas then sends to local storage
 function addToStorage (idea) {
-  checkStorage()
-  allIdeas.unshift(idea)
+  checkStorage();
+  allIdeas.unshift(idea);
   var stringifiedAllIdeas = JSON.stringify(allIdeas);
   localStorage.setItem('allIdeas', stringifiedAllIdeas);
-  checkStorage()
+  checkStorage();
 }
 
-
 function ConstructIdea (title, body) {
-  this.id = parseInt(Math.random() * 100000)
+  this.id = parseInt(Math.random() * 100000);
   this.title = title;
   this.body = body;
   this.quality = 'swill';
 };
+
+function buildBox (idea) {
+  $('.main-container').append(
+    '<article class="box" id=' + idea.id + '>'+
+    '<div class="idea-header">' +
+    '<h3>' + idea.title +'</h3>' +
+    '<img src="assets/delete.svg" alt="exit button" class="delete icon">' +
+    '</div>' +
+    '<p class="idea-body">' +
+      idea.body +
+    '</p>' +
+    '<div class="idea-footer">' +
+    '<div class="quality-icons">' +
+      '<img src="assets/upvote.svg" alt="upvote" class="upvote icon">' +
+      '<img src="assets/downvote.svg" alt="downvote" class="upvote icon">' +
+    '</div>' +
+    '<p class="idea-quality">Quality: <span class="quality-value">swill</span></p>' +
+    '</div>' +
+    '</article>'
+
+  )
+
+
+}
