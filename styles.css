@@ -8,5 +8,96 @@ body {
 
 
 header {
-  font-family: 'Roboto', sans-serif;
+  padding: 0 1em 1em;
+  background-color: #E5F3F2;
+}
+
+h1 {
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 2em;
+  color: #00A79D;
+  text-align: center;
+  padding: .25em;
+}
+
+span {
+  color: #6D6E71;
+}
+
+.title-input,
+.body-input,
+.search-box {
+  width: 100%;
+  border: 2px solid #D1D3D4;
+  margin-bottom: .5em;
+  padding: .2em;
+  font-size: 1.1em;
+  font-family: inherit;
+}
+
+.body-input {
+  resize: none;
+  height: 4.5em;
+}
+
+.save-button {
+  width: 100%;
+  background-color: #00A79D;
+  color: #FFFFFF;
+  border: none;
+  padding: .4em;
+  font-family: inherit;
+  font-size: 1.1em;
+}
+
+.save-button:hover {
+  background-color: #045E55;
+}
+
+
+main {
+  padding: 1em;
+}
+
+.search-box {
+  margin-bottom: 2em;
+}
+
+.box {
+  border-bottom: 2px solid #D1D3D4;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  font-family: 'Open Sans', sans-serif;
+  color: #6D6E71;
+
+}
+
+
+h3 {
+  font-family: 'Roboto Slab', sans-serif;
+  display: inline-block;
+  font-size: 1.2em;
+  margin-bottom: .5em;
+}
+
+.delete {
+  float: right;
+}
+
+.idea-body {
+  color: #939598;
+  margin-bottom: .5em;
+}
+
+.icon {
+  height: 20px;
+}
+
+.idea-quality {
+  display: inline-block;
+}
+
+.upvote,
+.downvote {
+  display: inline-block;
 }

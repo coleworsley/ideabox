@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>IdeaBox</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700" rel="stylesheet">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -12,45 +12,47 @@
   <body>
     <header>
       <h1>idea<span>box</span></h1>
-      <input type="text" name="title" placeholder="Title">
-      <input type="text" name="body" placeholder="Body">
-      <button>Save</button>
+      <input type="text" name="title" placeholder="Title" class="title-input">
+
+      <textarea name="body" placeholder="Body" class="body-input"></textarea>
+
+      <button class="save-button">Save</button>
     </header>
 
     <main>
-      <input type="search" name="seachbox" placeholder="Search">
+      <input type="search" name="seachbox" placeholder="Search" class="search-box">
 
       <article class="box">
         <h3>Example Idea 1</h3>
-        <img src="assets/delete.svg" alt="exit button">
-        <p>
+        <img src="assets/delete.svg" alt="exit button" class="delete icon">
+        <p class="idea-body">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
-        <img src="assets/upvote.svg" alt="upvote">
-        <img src="assets/downvote.svg" alt="downvote">
-        <p class:"quality">Quality: swill</p>
+        <img src="assets/upvote.svg" alt="upvote" class="upvote icon">
+        <img src="assets/downvote.svg" alt="downvote" class="upvote icon">
+        <p class="idea-quality">Quality: swill</p>
       </article>
 
       <article class="box">
         <h3>Example Idea 1</h3>
-        <img src="assets/delete.svg" alt="exit button">
-        <p>
+        <img src="assets/delete.svg" alt="exit button" class="delete icon">
+        <p class="idea-body">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
-        <img src="assets/upvote.svg" alt="upvote">
-        <img src="assets/downvote.svg" alt="downvote">
-        <p class:"quality">Quality: swill</p>
+        <img src="assets/upvote.svg" alt="upvote" class="upvote icon">
+        <img src="assets/downvote.svg" alt="downvote" class="upvote icon">
+        <p class="idea-quality">Quality: swill</p>
       </article>
 
       <article class="box">
         <h3>Example Idea 1</h3>
-        <img src="assets/delete.svg" alt="exit button">
-        <p>
+        <img src="assets/delete.svg" alt="exit button" class="delete icon">
+        <p class="idea-body">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
-        <img src="assets/upvote.svg" alt="upvote">
-        <img src="assets/downvote.svg" alt="downvote">
-        <p class:"quality">Quality: swill</p>
+        <img src="assets/upvote.svg" alt="upvote" class="upvote icon">
+        <img src="assets/downvote.svg" alt="downvote" class="upvote icon">
+        <p class="idea-quality">Quality: swill</p>
       </article>
     </main>
   </body>
