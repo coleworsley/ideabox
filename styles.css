@@ -69,6 +69,15 @@ h1 {
   font-size: 1.1em;
 }
 
+.save-button[disabled] {
+  background-color: #666;
+}
+
+.save-button[disabled]:hover {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
 .save-button:hover {
   background-color: #045E55;
   cursor: pointer;
