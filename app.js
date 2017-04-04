@@ -25,19 +25,7 @@ $('.save-button').on('click', function() {
 })
 
 // Search Box Event
-$('.search-box').on('input', function() {
-  var inputText = $(this).val();
-  var hideArray = allIdeas.filter(function(idea){
-    if (idea.title.indexOf(inputText) < 0 && idea.body.indexOf(inputText) < 0) {
-      return idea
-    } else {
-      $('#' + idea.id).closest('.box').css('display', 'block')
-    }
-  });
-  hideArray.forEach(function(idea) {
-    $('#' + idea.id).closest('.box').css('display', 'none')
-  });
-});
+$('.search-box').on('input', search)
 
 // Delete Button Event
 $('.main-container').on('click', '.delete', function() {
@@ -89,6 +77,23 @@ $('.box-container').on('blur', '.idea-body', function() {
 // FUNCTIONS  ==========================
 // =====================================
 
+// Search Box
+function search() {
+  var inputText = $('.search-box').val();
+  var hideArray = allIdeas.filter(function(idea){
+    if (idea.title.indexOf(inputText) < 0 && idea.body.indexOf(inputText) < 0) {
+      return idea
+    } else {
+      $('#' + idea.id).closest('.box').css('display', 'block')
+    }
+  });
+
+  hideArray.forEach(function(idea) {
+    $('#' + idea.id).closest('.box').css('display', 'none')
+  });
+}
+
+// Update Text on edit
 function editIdea(reference, property) {
   var newText = $(reference).text();
   var boxID = parseInt($(reference).closest('.box').attr('id'));
@@ -101,18 +106,16 @@ function sendToStorage(boxID, updatedText, property){
   allIdeas.forEach(function(idea, index) {
       if (idea.id === boxID) {
         idea[property] = updatedText
-      }
+      };
   });
   localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
-}
+};
 
-// If allIdeas exists in localStorage, set it to gloabl variable. If not, set it to empty Array
 function checkStorage () {
   var stringifiedArr = localStorage.getItem('allIdeas');
   allIdeas = JSON.parse(stringifiedArr) || [];
 }
 
-// Checks current storage then adds new idea to any existing ideas then sends to local storage
 function addToStorage (idea) {
   checkStorage();
   allIdeas.push(idea);
@@ -132,6 +135,7 @@ function clearBoxContainer() {
   $('.box-container').children().remove();
 }
 
+// Constructor Function
 function ConstructIdea (title, body) {
   this.id = parseInt(Math.random() * 100000);
   this.title = title;
