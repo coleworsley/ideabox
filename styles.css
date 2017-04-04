@@ -43,6 +43,21 @@ h1 {
   color: #00A79D;
 }
 
+input,
+textarea {
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border: 2px solid #00A79D;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #D1D3D4;
+}
+
 .title-input,
 .body-input,
 .search-box {
