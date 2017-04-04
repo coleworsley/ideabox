@@ -113,6 +113,10 @@ h3 {
   font-size: 1.2em;
 }
 
+.delete:hover {
+  cursor: pointer;
+}
+
 .idea-body {
   color: #939598;
   margin-bottom: .7em;
