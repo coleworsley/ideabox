@@ -86,33 +86,34 @@ $('.box-container').on('click', '.downvote', function() {
 
 // Edit idea title
 $('.box-container').on('blur', '.idea-title', function() {
-  var newTitle = $(this).text();
-  var boxID = parseInt($(this).closest('.box').attr('id'));
-  allIdeas.forEach(function(idea, index) {
-      if (idea.id === boxID) {
-        idea.title = newTitle;
-      }
-      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
-    });
-    refreshIdeaBoxes();
+  editIdea(this, 'title')
 })
 
 // Edit idea body
 $('.box-container').on('blur', '.idea-body', function() {
-  var newBody = $(this).text();
-  var boxID = parseInt($(this).closest('.box').attr('id'));
-  allIdeas.forEach(function(idea, index) {
-      if (idea.id === boxID) {
-        idea.body = newBody;
-      }
-      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
-    });
-    refreshIdeaBoxes();
-})
+  editIdea(this, 'body');
+});
 
 // =====================================
 // FUNCTIONS  ==========================
 // =====================================
+
+function editIdea(reference, property) {
+  var newText = $(reference).text();
+  var boxID = parseInt($(reference).closest('.box').attr('id'));
+
+  sendToStorage(boxID, newText, property)
+  refreshIdeaBoxes();
+}
+
+function sendToStorage(boxID, updatedText, property){
+  allIdeas.forEach(function(idea, index) {
+      if (idea.id === boxID) {
+        idea[property] = updatedText
+      }
+  });
+  localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
+}
 
 // Load page, check local storage
 // Checks if allIdeas array exists in localStorage, if not set to empty array, otherwise assign to allIdeas array var
