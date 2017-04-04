@@ -92,7 +92,7 @@ function buildBox (idea) {
       '<button class="upvote icon"></button>' +
       '<button class="downvote icon"></button>' +
     '</div>' +
-    '<p class="idea-quality">Quality: <span class="quality-value">swill</span></p>' +
+    '<p class="idea-quality">Quality: <span class="quality-value">' + idea.quality +'</span></p>' +
     '</div>' +
     '</article>'
   )
@@ -118,3 +118,71 @@ $('.search-box').on('keyup', function() {
     $('#' + idea.id).closest('.box').css('display', 'none')
   });
 });
+
+
+
+
+// Changing the quality of an idea
+$('.box-container').on('click', '.upvote', function() {
+  var boxID = parseInt($(this).closest('.box').attr('id'));
+
+  allIdeas.forEach(
+    function(idea, index) {
+      if (idea.id === boxID) {
+        idea.quality = changeQuality(idea, 'upvote');
+        console.log(idea.quality);
+      }
+
+      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
+    });
+
+    refreshIdeaBoxes();
+});
+
+
+
+$('.box-container').on('click', '.downvote', function() {
+  var boxID = parseInt($(this).closest('.box').attr('id'));
+
+  allIdeas.forEach(
+    function(idea, index) {
+      if (idea.id === boxID) {
+        idea.quality = changeQuality(idea, 'downvote');
+        console.log(idea.quality);
+      }
+
+      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
+    });
+
+    refreshIdeaBoxes();
+});
+
+
+
+function changeQuality(input, className) {
+  if (className === 'upvote') {
+    switch (input.quality) {
+      case 'swill':
+        input.quality = 'plausible'
+        break;
+      case 'plausible':
+        input.quality = 'genius'
+        break;
+      default:
+        input.quality = 'genius'
+    }
+    return input.quality
+  } else {
+    switch (input.quality) {
+      case 'genius':
+        input.quality = 'plausible'
+        break;
+      case 'plausible':
+        input.quality = 'swill'
+        break;
+      default:
+        input.quality = 'swill'
+    }
+    return input.quality
+  }
+}
