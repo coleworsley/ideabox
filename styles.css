@@ -97,7 +97,11 @@ h1 {
 }
 
 .icon {
-  height: 1.4em;
+  height: 2em;
+  width: 2em;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 .idea-header {
@@ -113,7 +117,13 @@ h3 {
   font-size: 1.2em;
 }
 
+.delete {
+  background-image: url('assets/delete.svg');
+  background-repeat: no-repeat;
+}
+
 .delete:hover {
+  background-image: url('assets/delete-hover.svg');
   cursor: pointer;
 }
 
@@ -133,7 +143,24 @@ h3 {
 }
 
 .upvote {
+  background-image: url('assets/upvote.svg');
+  background-repeat: no-repeat;
   margin-right: 0.25em;
+}
+
+.upvote:hover {
+  background-image: url('assets/upvote-hover.svg');
+  cursor: pointer;
+}
+
+.downvote {
+  background-image: url('assets/downvote.svg');
+  background-repeat: no-repeat;
+}
+
+.downvote:hover {
+  cursor: pointer;
+  background-image: url('assets/downvote-hover.svg');
 }
 
 .idea-quality {
