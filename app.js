@@ -83,21 +83,18 @@ function buildBox (idea) {
     '<article class="box" id=' + idea.id + '>'+
     '<div class="idea-header">' +
     '<h3>' + idea.title +'</h3>' +
-    '<img src="assets/delete.svg" alt="exit button" class="delete icon">' +
+    '<button class="delete icon"></button>' +
     '</div>' +
     '<p class="idea-body">' +
       idea.body +
     '</p>' +
     '<div class="idea-footer">' +
     '<div class="quality-icons">' +
-      '<img src="assets/upvote.svg" alt="upvote" class="upvote icon">' +
-      '<img src="assets/downvote.svg" alt="downvote" class="upvote icon">' +
+      '<button class="upvote icon"></button>' +
+      '<button class="downvote icon"></button>' +
     '</div>' +
     '<p class="idea-quality">Quality: <span class="quality-value">swill</span></p>' +
     '</div>' +
     '</article>'
-
   )
-
-
 }
