@@ -1,6 +1,6 @@
 var allIdeas = []
-checkStorage()
 
+$('document').ready(refreshIdeaBoxes)
 
 // Event Listeners
 $('.title-input, .body-input').on('input', function() {
@@ -27,6 +27,20 @@ $('.save-button').on('click', function() {
   buildBox(newIdea);
 })
 
+// Delete Button
+$('.main-container').on('click', '.delete', function() {
+  var boxID = parseInt($(this).closest('.box').attr('id'));
+  allIdeas.forEach(
+
+    function(idea, index){
+    if (idea.id === boxID) {
+      allIdeas.splice(index, 1);
+    }
+    localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
+  });
+
+  refreshIdeaBoxes();
+})
 
 
 // Load page, check local storage
@@ -40,10 +54,21 @@ function checkStorage () {
 // Checks current storage then adds new idea to any existing ideas then sends to local storage
 function addToStorage (idea) {
   checkStorage();
-  allIdeas.unshift(idea);
-  var stringifiedAllIdeas = JSON.stringify(allIdeas);
-  localStorage.setItem('allIdeas', stringifiedAllIdeas);
+  allIdeas.push(idea);
+  localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
   checkStorage();
+}
+
+function refreshIdeaBoxes() {
+  clearBoxContainer();
+  checkStorage();
+  allIdeas.forEach(function(idea){
+    buildBox(idea);
+  })
+}
+
+function clearBoxContainer() {
+  $('.box-container').children().remove();
 }
 
 function ConstructIdea (title, body) {
@@ -54,7 +79,7 @@ function ConstructIdea (title, body) {
 };
 
 function buildBox (idea) {
-  $('.main-container').append(
+  $('.box-container').prepend(
     '<article class="box" id=' + idea.id + '>'+
     '<div class="idea-header">' +
     '<h3>' + idea.title +'</h3>' +
