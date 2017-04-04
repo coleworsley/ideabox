@@ -37,7 +37,7 @@ $('.save-button').on('click', function() {
 $('.search-box').on('input', function() {
   var inputText = $(this).val();
   var hideArray = allIdeas.filter(function(idea){
-    if (idea.title.search(inputText) < 0) {
+    if (idea.title.indexOf(inputText) < 0 && idea.body.indexOf(inputText) < 0) {
       return idea
     } else {
       $('#' + idea.id).closest('.box').css('display', 'block')
