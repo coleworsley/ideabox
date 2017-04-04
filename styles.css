@@ -139,6 +139,7 @@ h3:focus {
   border: 2px solid rgba(0,167,157,.3);
   background-color: rgba(0,167,157,.1);
   border-radius: 5px;
+  padding: .2em .2em;
 }
 
 .delete {
@@ -164,6 +165,7 @@ h3:focus {
   border: 2px solid rgba(0,167,157,.3);
   background-color: rgba(0,167,157,.1);
   border-radius: 5px;
+  padding: .2em .2em;
 }
 
 .idea-footer {
