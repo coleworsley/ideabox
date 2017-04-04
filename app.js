@@ -108,11 +108,22 @@ $('.box-container').on('blur', '.idea-body', function() {
       localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
     });
     refreshIdeaBoxes();
+    editIdea(this, idea.body);
 })
 
 // =====================================
 // FUNCTIONS  ==========================
 // =====================================
+
+function editIdea(reference, idea) {
+  var newItem = $(reference).text();
+  var boxID = parseInt($(reference).closest('.box').attr('id'));
+
+
+  console.log(newItem)
+}
+
+
 
 // Load page, check local storage
 // Checks if allIdeas array exists in localStorage, if not set to empty array, otherwise assign to allIdeas array var
