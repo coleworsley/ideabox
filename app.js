@@ -63,11 +63,9 @@ $('.main-container').on('click', '.delete', function() {
 // Upvote Event
 $('.box-container').on('click', '.upvote', function() {
   var boxID = parseInt($(this).closest('.box').attr('id'));
-  allIdeas.forEach(
-    function(idea, index) {
+  allIdeas.forEach(function(idea, index) {
       if (idea.id === boxID) {
         idea.quality = changeQuality(idea, 'upvote');
-        console.log(idea.quality);
       }
       localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
     });
@@ -77,17 +75,40 @@ $('.box-container').on('click', '.upvote', function() {
 // Downvote Event
 $('.box-container').on('click', '.downvote', function() {
   var boxID = parseInt($(this).closest('.box').attr('id'));
-  allIdeas.forEach(
-    function(idea, index) {
+  allIdeas.forEach(function(idea, index) {
       if (idea.id === boxID) {
         idea.quality = changeQuality(idea, 'downvote');
-        console.log(idea.quality);
       }
       localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
     });
-
     refreshIdeaBoxes();
 });
+
+// Edit idea title
+$('.box-container').on('blur', '.idea-title', function() {
+  var newTitle = $(this).text();
+  var boxID = parseInt($(this).closest('.box').attr('id'));
+  allIdeas.forEach(function(idea, index) {
+      if (idea.id === boxID) {
+        idea.title = newTitle;
+      }
+      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
+    });
+    refreshIdeaBoxes();
+})
+
+// Edit idea body
+$('.box-container').on('blur', '.idea-body', function() {
+  var newBody = $(this).text();
+  var boxID = parseInt($(this).closest('.box').attr('id'));
+  allIdeas.forEach(function(idea, index) {
+      if (idea.id === boxID) {
+        idea.body = newBody;
+      }
+      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
+    });
+    refreshIdeaBoxes();
+})
 
 // =====================================
 // FUNCTIONS  ==========================
@@ -131,7 +152,7 @@ function buildBox (idea) {
   $('.box-container').prepend(
     '<article class="box" id=' + idea.id + '>'+
     '<div class="idea-header">' +
-    '<h3 contenteditable="true">' + idea.title +'</h3>' +
+    '<h3 class="idea-title" contenteditable="true">' + idea.title +'</h3>' +
     '<button class="delete icon"></button>' +
     '</div>' +
     '<p class="idea-body" contenteditable="true">' +
