@@ -44,7 +44,6 @@ $('.main-container').on('click', '.delete', function() {
 
 
 // Load page, check local storage
-
 // Checks if allIdeas array exists in localStorage, if not set to empty array, otherwise assign to allIdeas array var
 function checkStorage () {
   var stringifiedArr = localStorage.getItem('allIdeas');
@@ -98,3 +97,24 @@ function buildBox (idea) {
     '</article>'
   )
 }
+
+
+
+
+
+// Search Bar
+$('.search-box').on('keyup', function() {
+  var inputText = $(this).val();
+
+  var hideArray = allIdeas.filter(function(idea){
+    if (idea.title.search(inputText) < 0) {
+      return idea
+    } else {
+      $('#' + idea.id).closest('.box').css('display', 'block')
+    }
+  });
+
+  hideArray.forEach(function(idea) {
+    $('#' + idea.id).closest('.box').css('display', 'none')
+  });
+});
