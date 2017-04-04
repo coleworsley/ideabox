@@ -1,57 +1,97 @@
+// =====================================
+// GLOBAL VARIABLE  ====================
+// =====================================
+
 var allIdeas = []
+
+// =====================================
+// EVENT LISTENERS  ====================
+// =====================================
 
 $('document').ready(refreshIdeaBoxes)
 
-
-// Event Listeners
+// Title & Body Input
 $('.title-input, .body-input').on('input', function() {
   var titleText = $('.title-input').val();
   var bodyText = $('.body-input').val();
-
   if (titleText != "" && bodyText != "") {
     $('.save-button').attr('disabled', false);
   }
-
   if (titleText == "" || bodyText == ""){
     $('.save-button').attr('disabled', true);
   }
 });
 
-
+// Save Button
 $('.save-button').on('click', function() {
-  console.log("it worked!")
   var titleInput = $('.title-input').val();
   var bodyInput = $('.body-input').val();
   var newIdea = new ConstructIdea(titleInput, bodyInput);
-
   clearInputs();
   addToStorage(newIdea);
   buildBox(newIdea);
-
   $(this).attr('disabled', 'true');
 })
 
-function clearInputs() {
-  $('.title-input, .body-input').val('');
-}
-
-
+// Search Box
+$('.search-box').on('input', function() {
+  var inputText = $(this).val();
+  var hideArray = allIdeas.filter(function(idea){
+    if (idea.title.search(inputText) < 0) {
+      return idea
+    } else {
+      $('#' + idea.id).closest('.box').css('display', 'block')
+    }
+  });
+  hideArray.forEach(function(idea) {
+    $('#' + idea.id).closest('.box').css('display', 'none')
+  });
+});
 
 // Delete Button
 $('.main-container').on('click', '.delete', function() {
   var boxID = parseInt($(this).closest('.box').attr('id'));
-  allIdeas.forEach(
-
-    function(idea, index){
+  allIdeas.forEach(function(idea, index){
     if (idea.id === boxID) {
       allIdeas.splice(index, 1);
     }
     localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
   });
-
   refreshIdeaBoxes();
 })
 
+// Upvote Event
+$('.box-container').on('click', '.upvote', function() {
+  var boxID = parseInt($(this).closest('.box').attr('id'));
+  allIdeas.forEach(
+    function(idea, index) {
+      if (idea.id === boxID) {
+        idea.quality = changeQuality(idea, 'upvote');
+        console.log(idea.quality);
+      }
+      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
+    });
+    refreshIdeaBoxes();
+});
+
+// Downvote Event
+$('.box-container').on('click', '.downvote', function() {
+  var boxID = parseInt($(this).closest('.box').attr('id'));
+  allIdeas.forEach(
+    function(idea, index) {
+      if (idea.id === boxID) {
+        idea.quality = changeQuality(idea, 'downvote');
+        console.log(idea.quality);
+      }
+      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
+    });
+
+    refreshIdeaBoxes();
+});
+
+// =====================================
+// FUNCTIONS  ==========================
+// =====================================
 
 // Load page, check local storage
 // Checks if allIdeas array exists in localStorage, if not set to empty array, otherwise assign to allIdeas array var
@@ -91,10 +131,10 @@ function buildBox (idea) {
   $('.box-container').prepend(
     '<article class="box" id=' + idea.id + '>'+
     '<div class="idea-header">' +
-    '<h3>' + idea.title +'</h3>' +
+    '<h3 contenteditable="true">' + idea.title +'</h3>' +
     '<button class="delete icon"></button>' +
     '</div>' +
-    '<p class="idea-body">' +
+    '<p class="idea-body" contenteditable="true">' +
       idea.body +
     '</p>' +
     '<div class="idea-footer">' +
@@ -108,66 +148,9 @@ function buildBox (idea) {
   )
 }
 
-
-
-
-
-// Search Bar
-$('.search-box').on('input', function() {
-  var inputText = $(this).val();
-
-  var hideArray = allIdeas.filter(function(idea){
-    if (idea.title.search(inputText) < 0) {
-      return idea
-    } else {
-      $('#' + idea.id).closest('.box').css('display', 'block')
-    }
-  });
-
-  hideArray.forEach(function(idea) {
-    $('#' + idea.id).closest('.box').css('display', 'none')
-  });
-});
-
-
-
-
-// Changing the quality of an idea
-$('.box-container').on('click', '.upvote', function() {
-  var boxID = parseInt($(this).closest('.box').attr('id'));
-
-  allIdeas.forEach(
-    function(idea, index) {
-      if (idea.id === boxID) {
-        idea.quality = changeQuality(idea, 'upvote');
-        console.log(idea.quality);
-      }
-
-      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
-    });
-
-    refreshIdeaBoxes();
-});
-
-
-
-$('.box-container').on('click', '.downvote', function() {
-  var boxID = parseInt($(this).closest('.box').attr('id'));
-
-  allIdeas.forEach(
-    function(idea, index) {
-      if (idea.id === boxID) {
-        idea.quality = changeQuality(idea, 'downvote');
-        console.log(idea.quality);
-      }
-
-      localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
-    });
-
-    refreshIdeaBoxes();
-});
-
-
+function clearInputs() {
+  $('.title-input, .body-input').val('');
+}
 
 function changeQuality(input, className) {
   if (className === 'upvote') {
