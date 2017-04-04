@@ -10,19 +10,10 @@ var allIdeas = []
 
 $('document').ready(refreshIdeaBoxes)
 
-// Title & Body Input
-$('.title-input, .body-input').on('input', function() {
-  var titleText = $('.title-input').val();
-  var bodyText = $('.body-input').val();
-  if (titleText != "" && bodyText != "") {
-    $('.save-button').attr('disabled', false);
-  }
-  if (titleText == "" || bodyText == ""){
-    $('.save-button').attr('disabled', true);
-  }
-});
+// Enable/Disable Save Button Event
+$('.title-input, .body-input').on('input', enableSaveButton);
 
-// Save Button
+// Save Button Event
 $('.save-button').on('click', function() {
   var titleInput = $('.title-input').val();
   var bodyInput = $('.body-input').val();
@@ -33,7 +24,7 @@ $('.save-button').on('click', function() {
   $(this).attr('disabled', 'true');
 })
 
-// Search Box
+// Search Box Event
 $('.search-box').on('input', function() {
   var inputText = $(this).val();
   var hideArray = allIdeas.filter(function(idea){
@@ -48,7 +39,7 @@ $('.search-box').on('input', function() {
   });
 });
 
-// Delete Button
+// Delete Button Event
 $('.main-container').on('click', '.delete', function() {
   var boxID = parseInt($(this).closest('.box').attr('id'));
   allIdeas.forEach(function(idea, index){
@@ -84,12 +75,12 @@ $('.box-container').on('click', '.downvote', function() {
     refreshIdeaBoxes();
 });
 
-// Edit idea title
+// Idea Title Edit
 $('.box-container').on('blur', '.idea-title', function() {
   editIdea(this, 'title')
 })
 
-// Edit idea body
+// Idea Body Edit
 $('.box-container').on('blur', '.idea-body', function() {
   editIdea(this, 'body');
 });
@@ -115,8 +106,7 @@ function sendToStorage(boxID, updatedText, property){
   localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
 }
 
-// Load page, check local storage
-// Checks if allIdeas array exists in localStorage, if not set to empty array, otherwise assign to allIdeas array var
+// If allIdeas exists in localStorage, set it to gloabl variable. If not, set it to empty Array
 function checkStorage () {
   var stringifiedArr = localStorage.getItem('allIdeas');
   allIdeas = JSON.parse(stringifiedArr) || [];
@@ -149,29 +139,19 @@ function ConstructIdea (title, body) {
   this.quality = 'swill';
 };
 
-function buildBox (idea) {
-  $('.box-container').prepend(
-    '<article class="box" id=' + idea.id + '>'+
-    '<div class="idea-header">' +
-    '<h3 class="idea-title" contenteditable="true">' + idea.title +'</h3>' +
-    '<button class="delete icon"></button>' +
-    '</div>' +
-    '<p class="idea-body" contenteditable="true">' +
-      idea.body +
-    '</p>' +
-    '<div class="idea-footer">' +
-    '<div class="quality-icons">' +
-      '<button class="upvote icon"></button>' +
-      '<button class="downvote icon"></button>' +
-    '</div>' +
-    '<p class="idea-quality">Quality: <span class="quality-value">' + idea.quality +'</span></p>' +
-    '</div>' +
-    '</article>'
-  )
-}
-
 function clearInputs() {
   $('.title-input, .body-input').val('');
+}
+
+function enableSaveButton() {
+  var titleText = $('.title-input').val();
+  var bodyText = $('.body-input').val();
+  if (titleText != "" && bodyText != "") {
+    $('.save-button').attr('disabled', false);
+  }
+  if (titleText == "" || bodyText == ""){
+    $('.save-button').attr('disabled', true);
+  }
 }
 
 function changeQuality(input, className) {
@@ -200,4 +180,25 @@ function changeQuality(input, className) {
     }
     return input.quality
   }
+}
+
+function buildBox (idea) {
+  $('.box-container').prepend(
+    '<article class="box" id=' + idea.id + '>'+
+    '<div class="idea-header">' +
+    '<h3 class="idea-title" contenteditable="true">' + idea.title +'</h3>' +
+    '<button class="delete icon"></button>' +
+    '</div>' +
+    '<p class="idea-body" contenteditable="true">' +
+      idea.body +
+    '</p>' +
+    '<div class="idea-footer">' +
+    '<div class="quality-icons">' +
+      '<button class="upvote icon"></button>' +
+      '<button class="downvote icon"></button>' +
+    '</div>' +
+    '<p class="idea-quality">Quality: <span class="quality-value">' + idea.quality +'</span></p>' +
+    '</div>' +
+    '</article>'
+  )
 }
