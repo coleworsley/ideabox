@@ -2,6 +2,7 @@ var allIdeas = []
 
 $('document').ready(refreshIdeaBoxes)
 
+
 // Event Listeners
 $('.title-input, .body-input').on('input', function() {
   var titleText = $('.title-input').val();
@@ -23,9 +24,18 @@ $('.save-button').on('click', function() {
   var bodyInput = $('.body-input').val();
   var newIdea = new ConstructIdea(titleInput, bodyInput);
 
+  clearInputs();
   addToStorage(newIdea);
   buildBox(newIdea);
+
+  $(this).attr('disabled', 'true');
 })
+
+function clearInputs() {
+  $('.title-input, .body-input').val('');
+}
+
+
 
 // Delete Button
 $('.main-container').on('click', '.delete', function() {
@@ -103,7 +113,7 @@ function buildBox (idea) {
 
 
 // Search Bar
-$('.search-box').on('keyup', function() {
+$('.search-box').on('input', function() {
   var inputText = $(this).val();
 
   var hideArray = allIdeas.filter(function(idea){
