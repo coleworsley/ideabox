@@ -87,9 +87,9 @@ $('.box-container').on('blur', '.idea-body', function() {
 
 // Search Box
 function search() {
-  var inputText = $('.search-box').val();
+  var inputText = $('.search-box').val().toUpperCase();
   var hideArray = allIdeas.filter(function(idea){
-    if (idea.title.indexOf(inputText) < 0 && idea.body.indexOf(inputText) < 0) {
+    if (idea.title.toUpperCase().indexOf(inputText) < 0 && idea.body.toUpperCase().indexOf(inputText) < 0) {
       return idea
     } else {
       $('#' + idea.id).closest('.box').css('display', 'block')
