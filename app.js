@@ -64,13 +64,21 @@ $('.box-container').on('click', '.downvote', function() {
 });
 
 // Idea Title Edit
-$('.box-container').on('blur, keyup', '.idea-title', function(e) {
+$('.box-container').on('keydown', '.idea-title', function(e) {
   e.which != 13 ? null : editIdea(this, 'title');
 })
 
+$('.box-container').on('blur', '.idea-title', function() {
+  editIdea(this, 'title');
+})
+
 // Idea Body Edit
-$('.box-container').on('blur keyup', '.idea-body', function(e) {
+$('.box-container').on('keydown', '.idea-body', function(e) {
   e.which != 13 ? null : editIdea(this, 'body');
+});
+
+$('.box-container').on('blur', '.idea-body', function() {
+  editIdea(this, 'body');
 });
 
 // =====================================
