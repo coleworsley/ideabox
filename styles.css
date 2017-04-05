@@ -60,7 +60,8 @@ textarea::placeholder {
 
 .title-input,
 .body-input,
-.search-box {
+.search-box,
+.sort-btn {
   width: 100%;
   border: 2px solid #D1D3D4;
   margin-bottom: .5em;
@@ -83,23 +84,41 @@ textarea::placeholder {
   font-family: inherit;
   font-size: 1.1em;
 }
-
+.save-button:hover {
+  background-color: #045E55;
+  cursor: pointer;
+}
 .save-button[disabled] {
   background-color: #666;
 }
-
 .save-button[disabled]:hover {
   background-color: #444;
   cursor: not-allowed;
 }
 
-.save-button:hover {
-  background-color: #045E55;
-  cursor: pointer;
+.search-sort-container {
+  display: flex;
+  margin-bottom: 2em;
+  justify-content: space-between;
 }
 
 .search-box {
-  margin-bottom: 2em;
+  width: 100%;
+}
+
+.sort-btn {
+  background-color: transparent;
+  width: 100px;
+  background-color: #00A79D;
+  color: #fff;
+  border: none;
+  margin-left: 1em;
+  padding-left: .5em;
+  outline: none;
+}
+.sort-btn:hover {
+  background-color: #045E55;
+  cursor: pointer;
 }
 
 .box {
