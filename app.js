@@ -1,8 +1,9 @@
 // =====================================
-// GLOBAL VARIABLE  ====================
+// GLOBAL VARIABLES  ===================
 // =====================================
 
 var allIdeas = [];
+var allIdeasSorted = [];
 
 // =====================================
 // EVENT LISTENERS  ====================
@@ -126,6 +127,25 @@ function checkStorage () {
   var stringifiedArr = localStorage.getItem('allIdeas');
   allIdeas = JSON.parse(stringifiedArr) || [];
 }
+
+function sortArray () {
+  allIdeasSorted = allIdeas.slice();
+  allIdeasSorted.sort(function(a, b){
+    
+    return parseQuality(b.quality) - parseQuality(a.quality)
+  });
+}
+
+function parseQuality(quality){
+  if (quality === 'genius') {
+    return 3;
+  } else if (quality === 'plausible') {
+    return 2;
+  } else {
+    return 1;
+  }
+}
+
 
 function addToStorage (idea) {
   checkStorage();
