@@ -108,7 +108,6 @@ textarea::placeholder {
   margin-bottom: 1.5em;
   font-family: 'Open Sans', sans-serif;
   color: #6D6E71;
-
 }
 
 .icon {
@@ -117,6 +116,7 @@ textarea::placeholder {
   background-color: transparent;
   border: none;
   outline: none;
+  padding: 0;
 }
 
 .idea-header {
@@ -174,13 +174,13 @@ h3:focus {
 }
 
 .quality-icons {
-  margin-right: .5em;
+  margin-right: .75em;
 }
 
 .upvote {
   background-image: url('assets/upvote.svg');
   background-repeat: no-repeat;
-  margin-right: 0.25em;
+  margin-right: 0.75em;
 }
 
 .upvote:hover {
@@ -221,6 +221,7 @@ footer {
   padding: 2em;
   line-height: 1.5;
   background-color: #E5F3F2;
+  color: #6D6E71;
 }
 
 footer .accent-color a {
