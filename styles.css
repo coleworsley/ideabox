@@ -1,3 +1,7 @@
+/*=======================================
+>>>>>  G E N E R A L   S T Y L E S  <<<<<
+========================================*/
+
 * {
   box-sizing: border-box;
 }
@@ -14,9 +18,10 @@ body {
   min-height: 100%;
 }
 
-header {
-  padding: 0 1.5em 1.5em;
-  background-color: #E5F3F2;
+main {
+  background-color: #fff;
+  padding: 1.5em;
+  flex: 1;
 }
 
 .header-container,
@@ -25,10 +30,13 @@ header {
   margin: 0 auto;
 }
 
-main {
-  background-color: #fff;
-  flex: 1;
-  padding: 1.5em;
+/*======================================
+>>>>>>>>>>  H  E  A  D  E  R  <<<<<<<<<<
+=======================================*/
+
+header {
+  padding: 0 1.5em 1.5em;
+  background-color: #E5F3F2;
 }
 
 h1 {
@@ -37,26 +45,16 @@ h1 {
   color: #6D6E71;
   text-align: center;
   padding: .5em;
+  font-weight: 700;
 }
 
 .accent-color {
   color: #00A79D;
 }
 
-input,
-textarea {
-  outline: none;
-}
-
-input:focus,
-textarea:focus {
-  border: 2px solid #00A79D;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #D1D3D4;
-}
+/*=========================================
+>>>>  I n p u t s   &   B u t t o n s  <<<<
+=========================================*/
 
 .title-input,
 .body-input,
@@ -68,6 +66,20 @@ textarea::placeholder {
   padding: .2em;
   font-size: 1.1em;
   font-family: inherit;
+}
+
+input,
+textarea {
+  outline: none;
+}
+input:focus,
+textarea:focus {
+  border: 2px solid #00A79D;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #D1D3D4;
 }
 
 .body-input {
@@ -102,8 +114,14 @@ textarea::placeholder {
   justify-content: space-between;
 }
 
+/*Fix for Safari search input display*/
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+
 .search-box {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .sort-btn {
@@ -113,13 +131,17 @@ textarea::placeholder {
   color: #fff;
   border: none;
   margin-left: 1em;
-  padding-left: .5em;
+  margin-bottom: 0;
   outline: none;
 }
 .sort-btn:hover {
   background-color: #045E55;
   cursor: pointer;
 }
+
+/*=====================================
+>>>>>>>>  I D E A   B O X E S  <<<<<<<<
+======================================*/
 
 .box {
   border-bottom: 2px solid #D1D3D4;
@@ -138,6 +160,7 @@ textarea::placeholder {
   padding: 0;
 }
 
+/*IDEABOX HEADER*/
 .idea-header {
   display: flex;
   justify-content: space-between;
@@ -152,7 +175,6 @@ h3 {
   padding: .2em 0;
   border: 2px solid transparent;
 }
-
 h3:focus {
   outline: none;
   border: 2px solid rgba(0,167,157,.3);
@@ -165,12 +187,12 @@ h3:focus {
   background-image: url('assets/delete.svg');
   background-repeat: no-repeat;
 }
-
 .delete:hover {
   background-image: url('assets/delete-hover.svg');
   cursor: pointer;
 }
 
+/*IDEABOX BODY*/
 .idea-body {
   color: #939598;
   margin-bottom: .7em;
@@ -178,7 +200,6 @@ h3:focus {
   padding: .2em 0;
   border: 2px solid transparent;
 }
-
 .idea-body:focus {
   outline: none;
   border: 2px solid rgba(0,167,157,.3);
@@ -187,6 +208,7 @@ h3:focus {
   padding: .2em .2em;
 }
 
+/*IDEABOX FOOTER*/
 .idea-footer {
   display: flex;
   align-items: center;
@@ -201,7 +223,6 @@ h3:focus {
   background-repeat: no-repeat;
   margin-right: 0.75em;
 }
-
 .upvote:hover {
   background-image: url('assets/upvote-hover.svg');
   cursor: pointer;
@@ -211,14 +232,12 @@ h3:focus {
   background-image: url('assets/downvote.svg');
   background-repeat: no-repeat;
 }
-
 .downvote:hover {
   cursor: pointer;
   background-image: url('assets/downvote-hover.svg');
 }
 
 .idea-quality {
-  display: inline-block;
   font-family: 'Roboto Slab', sans-serif;
 }
 
@@ -226,11 +245,9 @@ h3:focus {
   font-family: 'Open Sans', sans-serif;
 }
 
-.upvote,
-.downvote {
-  display: inline-block;
-}
-
+/*======================================
+>>>>>>>>>>  F  O  O  T  E  R  <<<<<<<<<<
+======================================*/
 
 footer {
   display: flex;
@@ -249,13 +266,16 @@ footer .accent-color a {
   text-decoration: none;
   color: #00A79D;
 }
-
 footer .accent-color a:visited {
   color: #00A79D;
 }
 footer .accent-color a:hover {
   color: #045E55;
 }
+
+/*=======================================
+>>>>>>>>  M E D I A   Q U E R Y  <<<<<<<<
+=======================================*/
 
 /*Over 450px*/
 @media screen and (min-width: 450px) {
