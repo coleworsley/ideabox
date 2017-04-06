@@ -84,6 +84,24 @@ $('.box-container').on('blur', '.idea-body', function() {
   editIdea(this, 'body');
 });
 
+// Sort Button
+$('.sort-btn').on('click', function() {
+  var current = $(this).children('span').text();
+  if (current == '') {
+    $(this).children('span').text('↓');
+    sortArray('↓')
+  } else if (current == '↓'){
+    $(this).children('span').text('↑');
+    sortArray('↑')
+  } else {
+    $(this).children('span').text('');
+    sortArray('')
+  }
+  clearBoxContainer();
+  allIdeasSorted.forEach(function(idea){
+    buildBox(idea);
+  });
+});
 
 // =====================================
 // FUNCTIONS  ==========================
@@ -99,7 +117,6 @@ function search() {
       $('#' + idea.id).closest('.box').css('display', 'block');
     }
   });
-
   hideArray.forEach(function(idea) {
     $('#' + idea.id).closest('.box').css('display', 'none');
   });
@@ -109,7 +126,6 @@ function search() {
 function editIdea(reference, property) {
   var newText = $(reference).text();
   var boxID = parseInt($(reference).closest('.box').attr('id'));
-
   updateIdeaArray(boxID, newText, property);
   refreshIdeaBoxes();
 }
@@ -127,28 +143,6 @@ function checkStorage () {
   var stringifiedArr = localStorage.getItem('allIdeas');
   allIdeas = JSON.parse(stringifiedArr) || [];
 }
-
-
-$('.sort-btn').on('click', function() {
-  var current = $(this).children('span').text();
-  if (current == '') {
-    $(this).children('span').text('↓');
-    sortArray('↓')
-  } else if (current == '↓'){
-    $(this).children('span').text('↑');
-    sortArray('↑')
-  } else {
-    $(this).children('span').text('');
-    sortArray('')
-  }
-
-  clearBoxContainer();
-  allIdeasSorted.forEach(function(idea){
-    buildBox(idea);
-  });
-});
-
-
 
 function sortArray (direction) {
   allIdeasSorted = allIdeas.slice();
@@ -174,7 +168,6 @@ function parseQuality(quality){
     return 1;
   }
 }
-
 
 function addToStorage (idea) {
   checkStorage();
