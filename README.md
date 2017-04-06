@@ -77,7 +77,7 @@ We’d like our users to be able to easily find specific ideas they already crea
 - Clearing the search box should restore all the ideas to the list.
 
 
-### Extensions
+## Extensions
 
 Go for it!! :muscle:
 
