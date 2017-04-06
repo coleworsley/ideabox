@@ -104,6 +104,7 @@ textarea::placeholder {
 
 .search-box {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .sort-btn {
@@ -113,7 +114,7 @@ textarea::placeholder {
   color: #fff;
   border: none;
   margin-left: 1em;
-  padding-left: .5em;
+  margin-bottom: 0;
   outline: none;
 }
 .sort-btn:hover {
