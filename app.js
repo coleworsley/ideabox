@@ -1,8 +1,9 @@
 // =====================================
-// GLOBAL VARIABLE  ====================
+// GLOBAL VARIABLES  ===================
 // =====================================
 
 var allIdeas = [];
+var allIdeasSorted = [];
 
 // =====================================
 // EVENT LISTENERS  ====================
@@ -18,6 +19,7 @@ $('.save-button').on('click', function() {
   var titleInput = $('.title-input').val();
   var bodyInput = $('.body-input').val();
   var newIdea = new ConstructIdea(titleInput, bodyInput);
+  $('.sort-btn').children('span').text('');
   clearInputs();
   addToStorage(newIdea);
   buildBox(newIdea);
@@ -48,6 +50,7 @@ $('.box-container').on('click', '.upvote', function() {
       }
       localStorage.setItem('allIdeas', JSON.stringify(allIdeas));
     });
+
     refreshIdeaBoxes();
 });
 
@@ -80,8 +83,6 @@ $('.box-container').on('keydown', '.idea-body', function(e) {
 $('.box-container').on('blur', '.idea-body', function() {
   editIdea(this, 'body');
 });
-
-
 
 
 // =====================================
@@ -127,6 +128,54 @@ function checkStorage () {
   allIdeas = JSON.parse(stringifiedArr) || [];
 }
 
+
+$('.sort-btn').on('click', function() {
+  var current = $(this).children('span').text();
+  if (current == '') {
+    $(this).children('span').text('↓');
+    sortArray('↓')
+  } else if (current == '↓'){
+    $(this).children('span').text('↑');
+    sortArray('↑')
+  } else {
+    $(this).children('span').text('');
+    sortArray('')
+  }
+
+  clearBoxContainer();
+  allIdeasSorted.forEach(function(idea){
+    buildBox(idea);
+  });
+});
+
+
+
+function sortArray (direction) {
+  allIdeasSorted = allIdeas.slice();
+  if (direction == '↑') {
+    allIdeasSorted.sort(function(a, b){
+      return parseQuality(b.quality) - parseQuality(a.quality)
+    });
+  } else if (direction == '↓') {
+    allIdeasSorted.sort(function(a, b){
+      return parseQuality(a.quality) - parseQuality(b.quality)
+    });
+  } else {
+    allIdeasSorted = allIdeas.slice()
+  }
+}
+
+function parseQuality(quality){
+  if (quality === 'genius') {
+    return 3;
+  } else if (quality === 'plausible') {
+    return 2;
+  } else {
+    return 1;
+  }
+}
+
+
 function addToStorage (idea) {
   checkStorage();
   allIdeas.push(idea);
@@ -135,6 +184,7 @@ function addToStorage (idea) {
 }
 
 function refreshIdeaBoxes() {
+  $('.sort-btn').children('span').text('');
   clearBoxContainer();
   checkStorage();
   allIdeas.forEach(function(idea){
@@ -143,9 +193,7 @@ function refreshIdeaBoxes() {
 }
 
 function clearBoxContainer() {
-  // $('.box-container').children().remove();
   $('.box-container').html("");
-
 }
 
 // Constructor Function
