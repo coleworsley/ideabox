@@ -75,3 +75,14 @@ We’d like our users to be able to easily find specific ideas they already crea
 - At the top of the idea list, include a text field labeled “Search”.
 - As a user types in the search box, the list of ideas should filter in real time to only display ideas whose title or body include the user’s text. The page should not reload.
 - Clearing the search box should restore all the ideas to the list.
+
+
+### Extensions
+
+Go for it!! :muscle:
+
+#### Sorting
+
+- When viewing the ideas list, the user should have the option to sort ideas by Quality. 
+- The default sort should be descending (“genius” → “plausible” → “swill”), and clicking the sort a second time should reverse it. 
+- The Idea list should be sorted client-side without reloading the page.
